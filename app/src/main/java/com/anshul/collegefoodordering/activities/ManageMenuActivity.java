@@ -14,6 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 
 import com.anshul.collegefoodordering.R;
 import com.anshul.collegefoodordering.adapters.MenuManagementAdapter;
@@ -45,6 +47,12 @@ public class ManageMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_menu);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("College Food Ordering");
+
 
         rvMenuItems = findViewById(R.id.rv_menu_items);
         progressBar = findViewById(R.id.progress_bar);

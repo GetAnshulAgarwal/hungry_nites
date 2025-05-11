@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 
 import com.anshul.collegefoodordering.R;
 import com.anshul.collegefoodordering.adapters.OrderAdapter;
@@ -45,6 +46,9 @@ public class VendorDashboardActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("College Food Ordering");
+
 
         rvOrders = findViewById(R.id.rv_orders);
         progressBar = findViewById(R.id.progress_bar);
