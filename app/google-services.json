@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854941771569",
+    "project_id": "collegefoodordering-e62e9",
+    "storage_bucket": "collegefoodordering-e62e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854941771569:android:40f8a16cdc3fdb46d47210",
+        "android_client_info": {
+          "package_name": "com.anshul.collegefoodordering"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCShtUAoJmb_Vg1gKD-zRwBtIWYsQZoDzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

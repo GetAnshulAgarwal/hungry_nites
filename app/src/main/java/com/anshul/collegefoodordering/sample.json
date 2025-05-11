@@ -1,0 +1,95 @@
+{
+  "users": {
+    "user1": {
+      "uid": "user1",
+      "email": "student@example.com",
+      "name": "John Student",
+      "userType": "student",
+      "studentId": "S12345"
+    },
+    "user2": {
+      "uid": "user2",
+      "email": "vendor@example.com",
+      "name": "Campus Cafe",
+      "userType": "vendor",
+      "vendorId": "V12345",
+      "description": "Best food on campus with affordable prices"
+    },
+    "user3": {
+      "uid": "user3",
+      "email": "vendor2@example.com",
+      "name": "Healthy Bites",
+      "userType": "vendor",
+      "vendorId": "V12346",
+      "description": "Nutritious meals for health-conscious students"
+    }
+  },
+  "menuItems": {
+    "item1": {
+      "id": "item1",
+      "vendorId": "user2",
+      "name": "Cheeseburger",
+      "description": "Juicy beef patty with melted cheese and fresh vegetables",
+      "price": 5.99,
+      "available": true
+    },
+    "item2": {
+      "id": "item2",
+      "vendorId": "user2",
+      "name": "Chicken Sandwich",
+      "description": "Grilled chicken breast with lettuce and special sauce",
+      "price": 4.99,
+      "available": true
+    },
+    "item3": {
+      "id": "item3",
+      "vendorId": "user2",
+      "name": "French Fries",
+      "description": "Crispy golden fries with seasoning",
+      "price": 2.49,
+      "available": true
+    },
+    "item4": {
+      "id": "item4",
+      "vendorId": "user3",
+      "name": "Veggie Bowl",
+      "description": "Fresh vegetables with quinoa and avocado",
+      "price": 7.99,
+      "available": true
+    },
+    "item5": {
+      "id": "item5",
+      "vendorId": "user3",
+      "name": "Fruit Smoothie",
+      "description": "Blend of seasonal fruits with yogurt",
+      "price": 3.99,
+      "available": true
+    }
+  },
+  "orders": {
+    "order1": {
+      "id": "order1",
+      "studentId": "user1",
+      "vendorId": "user2",
+      "items": {
+        "item1": {
+          "id": "item1",
+          "name": "Cheeseburger",
+          "price": 5.99,
+          "quantity": 1
+        },
+        "item3": {
+          "id": "item3",
+          "name": "French Fries",
+          "price": 2.49,
+          "quantity": 1
+        }
+      },
+      "totalAmount": 8.48,
+      "status": "delivered",
+      "orderTime": "2025-05-10T10:15:00.000Z",
+      "responseTime": "2025-05-10T10:17:00.000Z",
+      "deliveryTime": "2025-05-10T10:35:00.000Z"
+    }
+  }
+}

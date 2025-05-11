@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">collegefoodordering</string>
+    <string name="available">Available</string>
+    <string name="price">Price ($)</string>
+    <string name="item_description">Item Description</string>
+    <string name="delete_item">Delete item</string>
+</resources>

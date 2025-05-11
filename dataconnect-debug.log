@@ -1,0 +1,15 @@
+I0511 04:55:07.128680   31304 load.go:37] Reloading schema and connectors...
+I0511 04:55:07.146811   31304 control.go:73] [/emulator/collegefoodordering 758b] UpdateResources(): done
+Schema: sources: schema\schema.gql [2088B] 
+Connector "default": sources: connector\mutations.gql [1233B] connector\queries.gql [1802B] 
+I0511 04:55:07.166056   31304 codegen.go:82] [connector "default" kotlinSdk] Generating sources into "C:\\Users\\hp\\AndroidStudioProjects\\collegefoodordering\\app\\src\\main\\java\\connectors\\default"
+I0511 04:55:07.168058   31304 collector.go:107] schema extensions wrote into "C:\\Users\\hp\\AndroidStudioProjects\\collegefoodordering\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [71117B] 
+I0511 04:55:07.169600   31304 collector.go:107] connector "default" kotlinSdk wrote into "C:\\Users\\hp\\AndroidStudioProjects\\collegefoodordering\\app\\src\\main\\java\\connectors\\default"
+Generated sources: DefaultConnector.kt [8314B] DefaultConnectorKeys.kt [799B] DefaultConnectorEnums.kt [797B] 
+I0511 04:55:07.169600   31304 load.go:115] Finished reloading
+I0511 04:55:07.171776   31304 dev.go:95] Listening on address (HTTP + gRPC): 127.0.0.1:9399
+I0511 04:55:07.171776   31304 dev.go:95] Listening on address (HTTP + gRPC): [::1]:9399
+I0511 04:55:09.782153   31304 control.go:73] [/emulator/collegefoodordering 991c] UpdateResources(): done
+Schema: sources: schema\schema.gql [2088B] 
+Connector "default": sources: connector\mutations.gql [1233B] connector\queries.gql [1802B] 

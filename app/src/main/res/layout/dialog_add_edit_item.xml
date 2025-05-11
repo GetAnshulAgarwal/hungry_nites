@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add/Edit Menu Item"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/et_item_name"
+        android:layout_width="match_parent"
+        android:minHeight="48dp"
+        android:layout_height="wrap_content"
+        android:hint="Item Name"
+        android:inputType="text"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_description"
+        android:inputType="textMultiLine"
+        android:minLines="2"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/price"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"
+        android:minHeight="48dp" />
+
+    <Switch
+        android:id="@+id/switch_available"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/available"
+        android:checked="true"
+        android:layout_marginBottom="24dp"
+        android:minHeight="48dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+</LinearLayout>
