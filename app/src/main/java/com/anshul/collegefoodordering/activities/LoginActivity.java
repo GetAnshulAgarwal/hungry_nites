@@ -2,6 +2,7 @@
 package com.anshul.collegefoodordering.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
@@ -101,8 +103,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String actualUserType = dataSnapshot.child("userType").getValue(String.class);
-
                     if (actualUserType != null && actualUserType.equals(selectedUserType)) {
+                        // Update FCM token in Firebase
+                        updateFCMToken();
+
                         // Navigate to appropriate dashboard
                         if (selectedUserType.equals("student")) {
                             startActivity(new Intent(LoginActivity.this, StudentDashboardActivity.class));
@@ -127,5 +131,16 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signOut();
             }
         });
+    }
+
+    private void updateFCMToken() {
+        SharedPreferences sharedPreferences = getSharedPreferences("FCM", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (token != null) {
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            FirebaseDatabase.getInstance().getReference("fcmTokens")
+                    .child(userId)
+                    .setValue(token);
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.anshul.collegefoodordering.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +21,12 @@ import com.anshul.collegefoodordering.R;
 import com.anshul.collegefoodordering.adapters.OrderAdapter;
 import com.anshul.collegefoodordering.models.Order;
 import com.anshul.collegefoodordering.utils.FirebaseUtil;
+import com.anshul.collegefoodordering.utils.NotificationHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -132,8 +135,50 @@ public class VendorDashboardActivity extends AppCompatActivity {
             orderRef.child("deliveryTime").setValue(new Date());
         }
 
-        Toast.makeText(this, "Order " + status, Toast.LENGTH_SHORT).show();
+        // Fetch the full order to send notification
+        orderRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Order order = dataSnapshot.getValue(Order.class);
+                if (order != null) {
+                    // Send local notification
+                    NotificationHelper.sendOrderStatusNotification(VendorDashboardActivity.this, order);
+
+                    // Send FCM notification to student
+                    sendFCMNotification(order);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
     }
+
+    private void sendFCMNotification(Order order) {
+        // Get student token from database
+        FirebaseDatabase.getInstance().getReference("fcmTokens")
+                .child(order.getStudentId())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String token = dataSnapshot.getValue(String.class);
+
+                            // Here you would call your server to send the FCM message
+                            // For testing, you can use the Firebase console to send notifications
+                            Log.d("FCM", "Student token: " + token);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle error
+                    }
+                });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

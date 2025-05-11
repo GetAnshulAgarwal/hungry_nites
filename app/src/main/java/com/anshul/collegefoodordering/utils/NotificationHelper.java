@@ -10,6 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import com.anshul.collegefoodordering.MainActivity;
 import com.anshul.collegefoodordering.R;
 import com.anshul.collegefoodordering.activities.OrderDetailActivity;
 import com.anshul.collegefoodordering.activities.VendorDashboardActivity;
@@ -29,11 +30,34 @@ public class NotificationHelper {
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel.setDescription(CHANNEL_DESC);
-
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    public static void showBasicNotification(Context context, String title, String message) {
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        int notificationId = (int) System.currentTimeMillis();
+        notificationManager.notify(notificationId, builder.build());
+    }
+
 
     public static void sendNewOrderNotification(Context context, Order order) {
         Intent intent = new Intent(context, VendorDashboardActivity.class);
@@ -59,7 +83,6 @@ public class NotificationHelper {
     public static void sendOrderStatusNotification(Context context, Order order) {
         Intent intent = new Intent(context, OrderDetailActivity.class);
         intent.putExtra("orderId", order.getId());
-
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
                 0,
@@ -68,12 +91,35 @@ public class NotificationHelper {
         );
 
         String title = "Order Update";
-        String message = "Your order status has been updated to: " + order.getStatus();
+        String message;
+
+        // Provide specific messages based on order status
+        switch (order.getStatus()) {
+            case "accepted":
+                message = "Your order has been accepted by the vendor!";
+                break;
+            case "rejected":
+                message = "Your order has been rejected by the vendor.";
+                break;
+            case "prepared":
+                message = "Your order is ready for pickup!";
+                break;
+            case "delivered":
+                message = "Your order has been delivered. Enjoy your meal!";
+                break;
+            case "cancelled":
+                message = "Your order has been cancelled.";
+                break;
+            default:
+                message = "Your order status has been updated to: " + order.getStatus();
+                break;
+        }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);

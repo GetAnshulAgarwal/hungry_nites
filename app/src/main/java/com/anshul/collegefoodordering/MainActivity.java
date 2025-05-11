@@ -1,10 +1,16 @@
 // MainActivity.java
 package com.anshul.collegefoodordering;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.anshul.collegefoodordering.activities.LoginActivity;
 import com.anshul.collegefoodordering.activities.StudentDashboardActivity;
@@ -19,10 +25,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private static final int REQUEST_NOTIFICATION_PERMISSION = 100; // You can use any integer value
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,37 @@ public class MainActivity extends AppCompatActivity {
         // Create notification channel
         NotificationHelper.createNotificationChannel(this);
 
-        mAuth = FirebaseUtil.getFirebaseAuth();
+        // Request notification permission for Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_NOTIFICATION_PERMISSION);
+            }
+        }
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w("FCM", "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Get new FCM registration token
+                    String token = task.getResult();
+                    Log.d("FCM", "Token: " + token);
+
+                    // Save token to Firebase if user is logged in
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        FirebaseDatabase.getInstance().getReference("fcmTokens")
+                                .child(user.getUid())
+                                .setValue(token);
+                    }
+                });
+
+
+            mAuth = FirebaseUtil.getFirebaseAuth();
 
         // Check if user is already logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();

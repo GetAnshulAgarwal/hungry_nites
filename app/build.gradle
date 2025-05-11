@@ -32,6 +32,8 @@ android {
 dependencies {
 
     implementation libs.appcompat
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
+
     implementation libs.firebase.bom
     implementation libs.material
     implementation libs.activity
