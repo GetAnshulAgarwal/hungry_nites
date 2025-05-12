@@ -160,10 +160,6 @@ The app leverages **Firebase Realtime Database** and **Firebase Cloud Messaging 
 
 🔔 Notifications
 
-📥 APK Download
----
-https://drive.google.com/file/d/1hVepdBZiIHpD9yx8XFd1QzmUXcmH5APz/view?usp=sharing
-
 
 ## 👨‍💻 Contributor
 
