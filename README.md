@@ -138,6 +138,33 @@ The app leverages **Firebase Realtime Database** and **Firebase Cloud Messaging 
 
 ---
 
+📸 Screenshots
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/7c11abc0-fae5-46e4-a641-3337af89e2e5" width="300">
+ <img src="https://github.com/user-attachments/assets/1e88cacb-ae84-43c3-b798-c967a7649049" width="300">
+ <img src="https://github.com/user-attachments/assets/5a77b455-512b-4822-988b-ac1c2b22700c" width="300">
+ <img src="https://github.com/user-attachments/assets/a9d43f26-8463-493f-8a5a-c03d8daf5eab" width="300">
+ <img src="https://github.com/user-attachments/assets/f6396410-a144-4420-b8f9-6b43339814b1" width="300">
+ <img src="https://github.com/user-attachments/assets/1f9e0d8d-76dd-4763-91b3-58aa293cd8f8" width="300">
+ <img src="https://github.com/user-attachments/assets/94b78dc0-6f8f-4ae4-a599-f7ec38e610b5" width="300">
+<img src="https://github.com/user-attachments/assets/f92d6757-5107-4622-a6a4-f47ef1f4eb43" width="300">
+<img src="https://github.com/user-attachments/assets/c385a1e7-b314-48c2-bddc-e6c50e896a9f" width="300">
+</p>
+
+
+🔐 Login Screens
+
+🛍️ Menu and Order Placement
+
+📦 Order Tracking
+
+🔔 Notifications
+
+📥 APK Download
+---
+https://drive.google.com/file/d/1hVepdBZiIHpD9yx8XFd1QzmUXcmH5APz/view?usp=sharing
+
+
 ## 👨‍💻 Contributor
 
 * **Anshul Agarwal** – \[Developer]
